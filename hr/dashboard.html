@@ -1,0 +1,596 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HR Dashboard - CRM</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+ 
+<!-- POPPINS FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/assets/css/style.css">
+
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<nav id="sidebar" class="sidebar">
+
+  <div class="brand d-flex align-items-center gap-2 px-2">
+    <img src="/assets/img/sidebar1.png" class="full-logo">
+    <img src="/assets/img/sidebar.png" class="small-logo">
+  </div>
+
+  <div class="px-2 mt-2">
+    <a href="/hr/dashboard.html" class="side-link active"><div class="side-icon"><i class="fa-solid fa-gauge-high"></i></div><div class="side-text" data-i18n="navigation.dashboard"><b>Dashboard</b></div></a>
+    <a href="/hr/employee.html" class="side-link"><div class="side-icon"><i class="fa-solid fa-users"></i></div><div class="side-text" data-i18n="navigation.employees">Employees</div></a>
+    <a href="/hr/attendance.html" class="side-link"><div class="side-icon"><i class="fa-solid fa-calendar-check"></i></div><div class="side-text" data-i18n="navigation.attendance">Attendance</div></a>
+    <a href="/hr/leave-approval.html" class="side-link"><div class="side-icon"><i class="fa-solid fa-calendar-xmark"></i></div><div class="side-text" data-i18n="navigation.leaveApprovals">Leave Approvals</div></a>
+    <a href="/hr/payroll.html" class="side-link"><div class="side-icon"><i class="fa-solid fa-wallet"></i></div><div class="side-text" data-i18n="navigation.payroll">Payroll</div></a>
+    <a href="/hr/reports.html" class="side-link"><div class="side-icon"><i class="fa-solid fa-file-lines"></i></div><div class="side-text" data-i18n="navigation.reports">Reports</div></a>
+   
+    <a href="/hr/annoucement.html" class="side-link"><div class="side-icon"><i class="fa-solid fa-bullhorn"></i></div><div class="side-text" data-i18n="navigation.announcements">Announcements</div></a>
+    <a href="#" class="side-link" onclick="handleLogout()"><div class="side-icon"><i class="fa-solid fa-arrow-right-from-bracket"></i></div><div class="side-text" data-i18n="navigation.logout">Logout</div></a>
+  </div>
+
+</nav>
+
+<!-- TOPBAR -->
+<header class="topbar">
+
+  <!-- SINGLE MOBILE/TABLET TOGGLE BUTTON -->
+  <button id="menuToggle" class="bg-transparent border-0">
+    <i class="fa-solid fa-bars"></i>
+  </button>
+
+  <div style="flex:1"></div>
+
+  <div class="d-flex align-items-center gap-2">
+    <!-- Language Selector -->
+    <select id="languageSelector" class="form-select form-select-sm" style="border-radius: 6px; border: 1px solid #d1d5db;">
+      <option value="en">English</option>
+      <option value="hi">हिंदी</option>
+      <option value="es">Español</option>
+      <option value="fr">Français</option>
+      <option value="zh">中文</option>
+      <option value="ar">العربية</option>
+    </select>
+    <div style="text-align:right;font-size:14px;">
+      <b>Michael Davis</b><br>
+      <span class="text-muted">HR Admin</span>
+    </div>
+    <div style="width:40px;height:40px;border-radius:50%;background:#e9f7f5;color:var(--teal);display:flex;align-items:center;justify-content:center;font-weight:700;">MD</div>
+  </div>
+
+
+
+  
+
+</header>
+
+<!-- CONTENT -->
+<main class="content-wrap">
+
+  <div class="d-flex justify-content-between mb-3" style="background:#fff;border:1px solid #e5e7eb;padding:10px 15px;border-radius:4px;">
+    <div class="page-title" data-i18n="dashboard.pageTitle">HR Dashboard</div>
+    <div class="text-muted" data-i18n="dashboard.breadcrumb">Dashboard</div>
+  </div>
+
+  <!-- YOUR FULL CONTENT (unchanged) -->
+  <!-- 4 Stat Cards Section -->
+<div class="row" style="margin-bottom:18px;">
+
+  <!-- Total Employees -->
+  <div class="col-lg-3 col-md-6 col-12" style="margin-bottom:15px;">
+    <div style="background:#fff;border-radius:10px;border:1px solid #edf0f1;padding:20px;display:flex;align-items:center;gap:18px;min-height:120px;">
+      <div style="width:70px;height:70px;background:#f7faf9;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:30px;color:#0b7368;">
+        <i class="fa-solid fa-users"></i>
+      </div>
+      <div>
+        <div style="font-size:24px;font-weight:700;">485</div>
+        <div style="font-size:14px;color:#6d7c83;" data-i18n="dashboard.totalEmployees">Total Employees</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Present Today -->
+  <div class="col-lg-3 col-md-6 col-12" style="margin-bottom:15px;">
+    <div style="background:#fff;border-radius:10px;border:1px solid #edf0f1;padding:20px;display:flex;align-items:center;gap:18px;min-height:120px;">
+      <div style="width:70px;height:70px;background:#f7faf9;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:30px;color:rgb(2,194,2);">
+        <i class="fa-solid fa-calendar-check"></i>
+      </div>
+      <div>
+        <div style="font-size:24px;font-weight:700;">452</div>
+        <div style="font-size:14px;color:#6d7c83;" data-i18n="dashboard.presentToday">Present Today</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Absent Today -->
+  <div class="col-lg-3 col-md-6 col-12" style="margin-bottom:15px;">
+    <div style="background:#fff;border-radius:10px;border:1px solid #edf0f1;padding:20px;display:flex;align-items:center;gap:18px;min-height:120px;">
+      <div style="width:70px;height:70px;background:#f7faf9;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:30px;color:red;">
+        <i class="fa-solid fa-calendar-xmark"></i>
+      </div>
+      <div>
+        <div style="font-size:24px;font-weight:700;">33</div>
+        <div style="font-size:14px;color:#6d7c83;" data-i18n="dashboard.absentToday">Absent Today</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pending Approvals -->
+  <div class="col-lg-3 col-md-6 col-12" style="margin-bottom:15px;">
+    <div style="background:#fff;border-radius:10px;border:1px solid #edf0f1;padding:20px;display:flex;align-items:center;gap:18px;min-height:120px;">
+      <div style="width:70px;height:70px;background:#f7faf9;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:30px;color:rgb(226,226,5);">
+        <i class="fa-solid fa-clock"></i>
+      </div>
+      <div>
+        <div style="font-size:24px;font-weight:700;">23</div>
+        <div style="font-size:14px;color:#6d7c83;" data-i18n="dashboard.pendingApprovals">Pending Approvals</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ===========================
+     GRAPH SECTION – EQUAL HEIGHT
+     =========================== -->
+<div class="row" style="margin-bottom:20px;">
+
+  <!-- LEFT BAR CHART -->
+  <div class="col-lg-6 col-md-12" style="margin-bottom:20px;">
+    <div style="background:#fff;border-radius:10px;border:1px solid #e5e7eb;height:420px;">
+
+      <div style="background:#0b7368;color:#fff;padding:12px 16px;
+      border-radius:10px 10px 0 0;font-weight:700;" data-i18n="dashboard.departmentDistribution">
+        Department Distribution
+      </div>
+
+      <!-- Hover Badge -->
+      <div id="barBadge" 
+        style="display:none;position:absolute;background:#0b7368;color:#fff;padding:6px 12px;
+        border-radius:6px;font-size:13px;z-index:999;">
+      </div>
+
+      <div style="padding:18px;display:flex;justify-content:center;align-items:center;
+      height:340px;position:relative;">
+        <canvas id="deptBarChart" style="width:100%;max-width:480px;height:300px !important;"></canvas>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- RIGHT PIE CHART -->
+  <div class="col-lg-6 col-md-12" style="margin-bottom:20px;">
+    <div style="background:#fff;border-radius:10px;border:1px solid #e5e7eb;height:420px;">
+
+      <div style="background:#0b7368;color:#fff;padding:12px 16px;
+      border-radius:10px 10px 0 0;font-weight:700;" data-i18n="dashboard.monthlyAttendanceTrend">
+        Monthly Attendance Trend
+      </div>
+
+      <!-- Hover Badge -->
+      <div id="pieBadge"
+        style="display:none;position:absolute;background:#0b7368;color:#fff;padding:6px 12px;
+        border-radius:6px;font-size:13px;z-index:999;">
+      </div>
+
+      <div style="padding:18px;display:flex;justify-content:center;align-items:center;
+      height:340px;position:relative;">
+        <canvas id="attendancePieChart" style="width:100%;max-width:380px;height:300px !important;"></canvas>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- ============================
+     NEW SECTION – SMALL HEIGHT
+     ============================ -->
+<div class="row" style="margin-top:20px;">
+
+  <!-- LEFT SMALL RECENT ACTIVITY -->
+  <div class="col-lg-6 col-md-12" style="margin-bottom:20px;">
+    <div style="background:#fff;border-radius:10px;border:1px solid #e5e7eb;height:300px;overflow:hidden;position:relative;">
+
+      <!-- Header -->
+      <div style="background:#0b7368;color:#fff;padding:10px 14px;
+      font-weight:700;border-radius:10px 10px 0 0;font-size:16px;" data-i18n="dashboard.recentActivity">
+        Recent Activity
+      </div>
+
+      <!-- Slider -->
+      <div id="activityContainer" 
+        style="height:245px;overflow:hidden;position:relative;padding:10px 15px;">
+
+        <div id="activityList" style="position:absolute;bottom:0;width:100%">
+
+          <div style="display:flex;gap:10px;margin-bottom:10px;">
+            <i class="fa-solid fa-user-plus" style="color:#0b7368;font-size:18px;"></i>
+            <div>
+              <div style="font-weight:700;font-size:14px;" data-i18n="dashboard.newEmployeeAdded">New Employee Added</div>
+              <div style="font-size:12px;color:#6c7278;">Rahul Sharma - Developer</div>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:10px;margin-bottom:10px;">
+            <i class="fa-solid fa-calendar-check" style="color:#0b7368;font-size:18px;"></i>
+            <div>
+              <div style="font-weight:700;font-size:14px;" data-i18n="dashboard.leaveApproved">Leave Approved</div>
+              <div style="font-size:12px;color:#6c7278;">5 requests approved</div>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:10px;margin-bottom:10px;">
+            <i class="fa-solid fa-bullhorn" style="color:#0b7368;font-size:18px;"></i>
+            <div>
+              <div style="font-weight:700;font-size:14px;" data-i18n="dashboard.announcementPosted">Announcement Posted</div>
+              <div style="font-size:12px;color:#6c7278;">Holiday on Friday</div>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:10px;margin-bottom:10px;">
+            <i class="fa-solid fa-clock" style="color:#0b7368;font-size:18px;"></i>
+            <div>
+              <div style="font-weight:700;font-size:14px;" data-i18n="dashboard.attendanceUpdated">Attendance Updated</div>
+              <div style="font-size:12px;color:#6c7278;">280 employees checked in</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- RIGHT SMALL QUICK ACTIONS -->
+  <div class="col-lg-6 col-md-12" style="margin-bottom:20px;">
+    <div style="background:#fff;border-radius:10px;border:1px solid #e5e7eb;height:300px;">
+
+      <!-- Header -->
+      <div style="background:#0b7368;color:#fff;padding:10px 14px;
+      font-weight:700;border-radius:10px 10px 0 0;font-size:16px;" data-i18n="dashboard.quickActions">
+        Quick Actions
+      </div>
+
+      <div style="padding:16px;">
+
+        <div class="row g-2">
+
+          <div class="col-6">
+            <button style="width:100%;background:#0b7368;color:#fff;border:0;padding:10px;
+            border-radius:8px;font-weight:600;font-size:14px;">
+              <i class="fa-solid fa-user-plus me-1"></i><span data-i18n="dashboard.addEmployee">Add Employee</span>
+            </button>
+          </div>
+
+          <div class="col-6">
+            <button style="width:100%;background:#0a8a4a;color:#fff;border:0;padding:10px;
+            border-radius:8px;font-weight:600;font-size:14px;">
+              <i class="fa-solid fa-calendar-check me-1"></i><span data-i18n="dashboard.leaveApproval">Leave Approval</span>
+            </button>
+          </div>
+
+          <div class="col-6">
+            <button style="width:100%;background:#1e90ff;color:#fff;border:0;padding:10px;
+            border-radius:8px;font-weight:600;font-size:14px;">
+              <i class="fa-solid fa-wallet me-1"></i><span data-i18n="navigation.payroll">Payroll</span>
+            </button>
+          </div>
+
+          <div class="col-6">
+            <button style="width:100%;background:#e63946;color:#fff;border:0;padding:10px;
+            border-radius:8px;font-weight:600;font-size:14px;">
+              <i class="fa-solid fa-bullhorn me-1"></i><span data-i18n="navigation.announcements">Announcement</span>
+            </button>
+          </div>
+
+          <div class="col-6">
+            <button style="width:100%;background:#6c757d;color:#fff;border:0;padding:10px;
+            border-radius:8px;font-weight:600;font-size:14px;">
+              <i class="fa-solid fa-file-lines me-1"></i><span data-i18n="dashboard.viewReport">View Report</span>
+            </button>
+          </div>
+
+          <div class="col-6">
+            <button style="width:100%;background:#f0ad4e;color:#fff;border:0;padding:10px;
+            border-radius:8px;font-weight:600;font-size:14px;">
+              <i class="fa-solid fa-file-pdf me-1"></i><span data-i18n="dashboard.monthlyReport">Monthly Report</span>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- ==========================================
+     PENDING LEAVE + UPCOMING EVENTS (Equal Height)
+     ========================================== -->
+
+<div class="row" style="margin-top:25px;">
+
+  <!-- LEFT – Pending Leave Approvals -->
+  <div class="col-lg-6 col-md-12" style="margin-bottom:20px;">
+    <div style="background:#fff;border-radius:12px;border:1px solid #e5e7eb;
+    overflow:hidden;height:430px;display:flex;flex-direction:column;">
+
+      <!-- Header -->
+      <div style="background:#0b7368;color:#fff;padding:14px 18px;
+      font-size:20px;font-weight:700;" data-i18n="dashboard.pendingLeaveApprovals">
+        Pending Leave Approvals
+      </div>
+
+      <!-- Body -->
+      <div style="padding:18px;overflow-y:auto;">
+
+        <!-- LEAVE ITEM -->
+        <div style="border:1px solid #e8e8e8;border-radius:10px;padding:15px;margin-bottom:16px;position:relative;">
+          
+          <!-- right side icons -->
+          <div style="position:absolute;right:15px;top:15px;display:flex;gap:12px;font-size:18px;">
+            <i class="fa-solid fa-check" style="color:#1aaa55;cursor:pointer;"></i>
+            <i class="fa-solid fa-xmark" style="color:#d64545;cursor:pointer;"></i>
+          </div>
+
+          <div style="font-size:16px;font-weight:700;padding-right:60px;">
+            John Doe – Annual Leave
+          </div>
+          <div style="color:#6d7c83;font-size:14px;">Jan 20–22, 2024 (3 days)</div>
+          <div style="color:#9aa3a9;font-size:12px;margin-top:4px;">Applied 2 days ago</div>
+
+        </div>
+
+        <!-- LEAVE ITEM -->
+        <div style="border:1px solid #e8e8e8;border-radius:10px;padding:15px;margin-bottom:16px;position:relative;">
+          
+          <!-- right side icons -->
+          <div style="position:absolute;right:15px;top:15px;display:flex;gap:12px;font-size:18px;">
+            <i class="fa-solid fa-check" style="color:#1aaa55;cursor:pointer;"></i>
+            <i class="fa-solid fa-xmark" style="color:#d64545;cursor:pointer;"></i>
+          </div>
+
+          <div style="font-size:16px;font-weight:700;padding-right:60px;">
+            Lisa Brown – Sick Leave
+          </div>
+          <div style="color:#6d7c83;font-size:14px;">Jan 18, 2024 (1 day)</div>
+          <div style="color:#9aa3a9;font-size:12px;margin-top:4px;">Applied 1 day ago</div>
+
+        </div>
+
+        <!-- LEAVE ITEM -->
+        <div style="border:1px solid #e8e8e8;border-radius:10px;padding:15px;position:relative;">
+          
+          <!-- right side icons -->
+          <div style="position:absolute;right:15px;top:15px;display:flex;gap:12px;font-size:18px;">
+            <i class="fa-solid fa-check" style="color:#1aaa55;cursor:pointer;"></i>
+            <i class="fa-solid fa-xmark" style="color:#d64545;cursor:pointer;"></i>
+          </div>
+
+          <div style="font-size:16px;font-weight:700;padding-right:60px;">
+            Mike Wilson – Emergency Leave
+          </div>
+          <div style="color:#6d7c83;font-size:14px;">Jan 19, 2024 (1 day)</div>
+          <div style="color:#9aa3a9;font-size:12px;margin-top:4px;">Applied today</div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- RIGHT – Upcoming Events -->
+  <div class="col-lg-6 col-md-12" style="margin-bottom:20px;">
+    <div style="background:#fff;border-radius:12px;border:1px solid #e5e7eb;
+    overflow:hidden;height:430px;display:flex;flex-direction:column;">
+
+      <!-- Header -->
+      <div style="background:#0b7368;color:#fff;padding:14px 18px;
+      font-size:20px;font-weight:700;">
+        Upcoming Events
+      </div>
+
+      <!-- Body -->
+      <div style="padding:18px;overflow-y:auto;">
+
+        <!-- EVENT -->
+        <div style="background:#0b7368;color:#fff;padding:15px;border-radius:10px;
+        margin-bottom:16px;display:flex;align-items:center;gap:15px;">
+
+          <div style="background:rgba(255,255,255,0.15);padding:10px 14px;border-radius:6px;
+          font-weight:700;text-align:center;line-height:16px;">
+            <div style="font-size:20px;">25</div>
+            <div style="font-size:12px;">JAN</div>
+          </div>
+          <div>
+            <div style="font-size:16px;font-weight:700;">Team Meeting</div>
+            <div style="font-size:13px;color:#d6f3ef;">All departments – Conference Room A</div>
+          </div>
+
+        </div>
+
+        <!-- EVENT -->
+        <div style="background:#0b7368;color:#fff;padding:15px;border-radius:10px;
+        margin-bottom:16px;display:flex;align-items:center;gap:15px;">
+
+          <div style="background:rgba(255,255,255,0.15);padding:10px 14px;border-radius:6px;
+          font-weight:700;text-align:center;line-height:16px;">
+            <div style="font-size:20px;">28</div>
+            <div style="font-size:12px;">JAN</div>
+          </div>
+          <div>
+            <div style="font-size:16px;font-weight:700;">Performance Reviews</div>
+            <div style="font-size:13px;color:#d6f3ef;">Q4 Review meetings</div>
+          </div>
+
+        </div>
+
+        <!-- EVENT -->
+        <div style="background:#0b7368;color:#fff;padding:15px;border-radius:10px;
+        margin-bottom:4px;display:flex;align-items:center;gap:15px;">
+
+          <div style="background:rgba(255,255,255,0.15);padding:10px 14px;border-radius:6px;
+          font-weight:700;text-align:center;line-height:16px;">
+            <div style="font-size:20px;">15</div>
+            <div style="font-size:12px;">FEB</div>
+          </div>
+          <div>
+            <div style="font-size:16px;font-weight:700;">Company Anniversary</div>
+            <div style="font-size:13px;color:#d6f3ef;">Annual celebration event</div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+
+  
+</main>
+
+<div id="overlay" class="overlay"></div>
+
+<!-- Language Manager -->
+<script src="/assets/js/language-manager.js"></script>
+
+<!-- ===========================
+     CHART.JS
+     =========================== -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- Small Slider Script -->
+<script>
+let pos = 0;
+function slideUp(){
+  pos += 1;
+  document.getElementById("activityList").style.bottom = pos + "px";
+  if(pos >= 140){ pos = 0; }
+}
+setInterval(slideUp, 55);
+</script>
+
+
+<script>
+/* ---------------- BAR CHART ---------------- */
+const barCtx = document.getElementById("deptBarChart");
+const barBadge = document.getElementById("barBadge");
+
+const deptLabels = ["Engineering","HR","Sales","Operations","Finance","Legal"];
+const deptData = [85,60,92,74,68,50];
+
+const deptBarChart = new Chart(barCtx, {
+  type: "bar",
+  data: {
+    labels: deptLabels,
+    datasets: [{
+      data: deptData,
+      backgroundColor: ["#0B5C63","#0B7368","#0FA088","#2BA68B","#F2B33D","#D64550"],
+      borderRadius: 12,
+      barThickness: 30
+    }]
+  },
+  options: {
+    responsive:true,
+    maintainAspectRatio:false,
+    plugins:{ legend:{display:false} },
+    onHover: (e, chartItem) => {
+      if(chartItem.length){
+        const i = chartItem[0].index;
+        barBadge.style.display = "block";
+        barBadge.innerHTML = deptLabels[i] + " : <b>" + deptData[i] + "</b>";
+        barBadge.style.top = (e.y + 14) + "px";
+        barBadge.style.left = (e.x + 14) + "px";
+      } else {
+        barBadge.style.display = "none";
+      }
+    }
+  }
+});
+
+
+/* ---------------- PIE CHART ---------------- */
+const pieCtx = document.getElementById("attendancePieChart");
+const pieBadge = document.getElementById("pieBadge");
+
+const pieLabels = ["Present","Absent","Late","Remote"];
+const pieValues = [60,20,10,10];
+const pieColors = ["#0b7368","#d64550","#f2b33d","#2ba68b"];
+
+const attendancePieChart = new Chart(pieCtx, {
+  type: "doughnut",
+  data: {
+    labels: pieLabels,
+    datasets: [{
+      data: pieValues,
+      backgroundColor: pieColors
+    }]
+  },
+  options: {
+    responsive:true,
+    maintainAspectRatio:false,
+    cutout:"55%",
+    plugins:{ legend:{display:false} },
+    onHover: (e, chartItem) => {
+      if(chartItem.length){
+        const i = chartItem[0].index;
+        pieBadge.style.display = "block";
+        pieBadge.innerHTML = pieLabels[i] + " : <b>" + pieValues[i] + "</b>";
+        pieBadge.style.top = (e.y + 14) + "px";
+        pieBadge.style.left = (e.x + 14) + "px";
+      } else {
+        pieBadge.style.display = "none";
+      }
+    }
+  }
+});
+</script>
+
+<script>
+const sidebar=document.getElementById('sidebar');
+const overlay=document.getElementById('overlay');
+const menuToggle=document.getElementById('menuToggle');
+
+menuToggle.onclick=()=>{
+  if(sidebar.classList.contains('open')){
+    sidebar.classList.remove('open');
+    overlay.classList.remove('show');
+  } else {
+    sidebar.classList.add('open');
+    overlay.classList.add('show');
+  }
+};
+
+overlay.onclick=()=>{
+  sidebar.classList.remove('open');
+  overlay.classList.remove('show');
+};
+</script>
+
+</body>
+</html>

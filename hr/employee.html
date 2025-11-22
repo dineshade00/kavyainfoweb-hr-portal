@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Employee</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
+  
+
+ <link rel="stylesheet" href="/assets/css/style.css">
+
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<nav id="sidebar" class="sidebar">
+
+  <div class="brand d-flex align-items-center gap-2 px-2">
+    <img src="/assets/img/sidebar1.png" class="full-logo">
+    <img src="/assets/img/sidebar.png" class="small-logo">
+  </div>
+
+  <div class="px-2 mt-2">
+    <a href="/hr/dashboard.html" class="side-link"><div class="side-icon"><i class="fa-solid fa-gauge-high"></i></div><div class="side-text" data-i18n="navigation.dashboard">Dashboard</div></a>
+    <a href="/hr/employee.html" class="side-link active"><div class="side-icon"><i class="fa-solid fa-users"></i></div><div class="side-text" data-i18n="navigation.employees"><b>Employees</b></div></a>
+    <a href="/hr/attendance.html" class="side-link"><div class="side-icon"><i class="fa-solid fa-calendar-check"></i></div><div class="side-text" data-i18n="navigation.attendance">Attendance</div></a>
+    <a href="/hr/leave-approval.html" class="side-link"><div class="side-icon"><i class="fa-solid fa-calendar-xmark"></i></div><div class="side-text" data-i18n="navigation.leaveApprovals">Leave Approvals</div></a>
+    <a href="/hr/payroll.html" class="side-link"><div class="side-icon"><i class="fa-solid fa-wallet"></i></div><div class="side-text" data-i18n="navigation.payroll">Payroll</div></a>
+    <a href="/hr/reports.html" class="side-link"><div class="side-icon"><i class="fa-solid fa-file-lines"></i></div><div class="side-text" data-i18n="navigation.reports">Reports</div></a>
+  
+    <a href="/hr/annoucement.html" class="side-link"><div class="side-icon"><i class="fa-solid fa-bullhorn"></i></div><div class="side-text" data-i18n="navigation.announcements">Announcements</div></a>
+    <a href="#" class="side-link" onclick="handleLogout()"><div class="side-icon"><i class="fa-solid fa-arrow-right-from-bracket"></i></div><div class="side-text" data-i18n="navigation.logout">Logout</div></a>
+  </div>
+
+</nav>
+
+<!-- TOPBAR -->
+<header class="topbar">
+
+  <!-- SINGLE MOBILE/TABLET TOGGLE BUTTON -->
+  <button id="menuToggle" class="bg-transparent border-0">
+    <i class="fa-solid fa-bars"></i>
+  </button>
+
+  <div style="flex:1"></div>
+
+  <div class="d-flex align-items-center gap-2">
+    <!-- Language Selector -->
+    <select id="languageSelector" class="form-select form-select-sm" style="border-radius: 6px; border: 1px solid #d1d5db;">
+      <option value="en">English</option>
+      <option value="hi">हिंदी</option>
+      <option value="es">Español</option>
+      <option value="fr">Français</option>
+      <option value="zh">中文</option>
+      <option value="ar">العربية</option>
+    </select>
+    <div style="text-align:right;font-size:14px;">
+      <b>Michael Davis</b><br>
+      <span class="text-muted">HR Admin</span>
+    </div>
+    <div style="width:40px;height:40px;border-radius:50%;background:#e9f7f5;color:var(--teal);display:flex;align-items:center;justify-content:center;font-weight:700;">MD</div>
+  </div>
+
+
+
+  
+
+</header>
+
+<!-- CONTENT -->
+<main class="content-wrap">
+
+  <div class="d-flex justify-content-between mb-3" style="background:#fff;border:1px solid #e5e7eb;padding:10px 15px;border-radius:4px;">
+    <div class="page-title" data-i18n="employee.pageTitle">Employee Management</div>
+    <a href="/hr/dashboard.html"><div class="text-muted" data-i18n="employee.breadcrumb">Dashboard</div></a>
+  </div>
+
+
+
+<div class="row g-3" style="margin-top:20px;">
+
+  <!-- CARD 1 -->
+  <div class="col-lg-3 col-md-6">
+    <div style="background:#fff;border-radius:12px;border:1px solid #e5e7eb;
+                padding:25px;text-align:center;box-shadow:0 2px 6px rgba(0,0,0,0.06);
+                position:relative;">
+      
+      <!-- top teal bar -->
+      <div style="height:6px;background:#0b7368;border-radius:12px 12px 0 0;
+                  position:absolute;top:0;left:0;right:0;"></div>
+
+      <i class="fa-solid fa-users" style="font-size:32px;color:#007bff;margin-top:5px;"></i>
+
+      <div style="font-size:28px;font-weight:700;margin-top:10px;">485</div>
+
+      <div style="color:#6c757d;font-size:16px;" data-i18n="employee.totalEmployees">Total Employees</div>
+    </div>
+  </div>
+
+
+  <!-- CARD 2 -->
+  <div class="col-lg-3 col-md-6">
+    <div style="background:#fff;border-radius:12px;border:1px solid #e5e7eb;
+                padding:25px;text-align:center;box-shadow:0 2px 6px rgba(0,0,0,0.06);
+                position:relative;">
+
+      <div style="height:6px;background:#0b7368;border-radius:12px 12px 0 0;
+                  position:absolute;top:0;left:0;right:0;"></div>
+
+      <i class="fa-solid fa-user-check" style="font-size:32px;color:#1b8c3b;margin-top:5px;"></i>
+
+      <div style="font-size:28px;font-weight:700;margin-top:10px;">452</div>
+
+      <div style="color:#6c757d;font-size:16px;">Active Employees</div>
+    </div>
+  </div>
+
+
+  <!-- CARD 3 -->
+  <div class="col-lg-3 col-md-6">
+    <div style="background:#fff;border-radius:12px;border:1px solid #e5e7eb;
+                padding:25px;text-align:center;box-shadow:0 2px 6px rgba(0,0,0,0.06);
+                position:relative;">
+
+      <div style="height:6px;background:#0b7368;border-radius:12px 12px 0 0;
+                  position:absolute;top:0;left:0;right:0;"></div>
+
+      <i class="fa-solid fa-user-clock" style="font-size:32px;color:#f1c40f;margin-top:5px;"></i>
+
+      <div style="font-size:28px;font-weight:700;margin-top:10px;">12</div>
+
+      <div style="color:#6c757d;font-size:16px;">New This Month</div>
+    </div>
+  </div>
+
+
+  <!-- CARD 4 -->
+  <div class="col-lg-3 col-md-6">
+    <div style="background:#fff;border-radius:12px;border:1px solid #e5e7eb;
+                padding:25px;text-align:center;box-shadow:0 2px 6px rgba(0,0,0,0.06);
+                position:relative;">
+
+      <div style="height:6px;background:#0b7368;border-radius:12px 12px 0 0;
+                  position:absolute;top:0;left:0;right:0;"></div>
+
+      <i class="fa-solid fa-user-xmark" style="font-size:32px;color:#e63946;margin-top:5px;"></i>
+
+      <div style="font-size:28px;font-weight:700;margin-top:10px;">8</div>
+
+      <div style="color:#6c757d;font-size:16px;">Resigned This Month</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ============================
+     ACTION HEADER SECTION
+     ============================ -->
+<div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:20px;margin-top:20px;
+            box-shadow:0 2px 4px rgba(0,0,0,0.05);">
+
+  <div class="row align-items-center">
+
+    <!-- LEFT BUTTONS -->
+    <div class="col-md-6" style="display:flex;gap:12px;">
+
+      <!-- OPEN FORM BUTTON -->
+      <button onclick="document.getElementById('empFormBox').style.display='block';"
+        style="background:#0b7368;color:#fff;font-weight:700;padding:10px 22px;border-radius:8px;border:none;">
+        <i class="fa-solid fa-user-plus me-2"></i>Add Employee
+      </button>
+
+      <!-- EXPORT BUTTON -->
+      <button
+        style="background:#34a853;color:#fff;font-weight:700;padding:10px 22px;border-radius:8px;border:none;">
+        <i class="fa-solid fa-download me-2"></i>Export
+      </button>
+
+    </div>
+
+    <!-- RIGHT INPUTS -->
+    <div class="col-md-6" style="display:flex;justify-content:end;gap:12px;">
+
+      <input type="text" class="form-control"
+        placeholder="Search employees..."
+        style="width:220px;border-radius:8px;border:1px solid #d1d5db;">
+
+      <select class="form-select"
+        style="width:180px;border-radius:8px;border:1px solid #d1d5db;">
+        <option>All Departments</option>
+        <option>IT</option>
+        <option>HR</option>
+        <option>Finance</option>
+        <option>Admin</option>
+        <option>Operations</option>
+      </select>
+
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================
+     EMPLOYEE TABLE SECTION
+     ============================ -->
+<div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;margin-top:20px;
+            box-shadow:0 2px 4px rgba(0,0,0,0.05);">
+
+  <!-- TABLE HEADER -->
+  <div style="padding:20px;border-bottom:1px solid #e5e7eb; background-color: #007070;">
+    <h5 style="margin:0;font-weight:700;color:#eeebeb;">Employee Directory</h5>
+  </div>
+
+  <!-- EMPLOYEE TABLE (DESKTOP VIEW) -->
+  <div class="desktop-table d-none d-md-block" style="overflow-x:auto;">
+    <table class="table table-hover mb-0" style="width:100%;">
+      <thead style="background:#f8f9fa;">
+        <tr>
+          <th style="padding:15px;border-bottom:2px solid #dee2e6;cursor:pointer;font-weight:600;" onclick="sortTable(0)">
+            Employee <i class="fas fa-sort ms-1"></i>
+          </th>
+          <th style="padding:15px;border-bottom:2px solid #dee2e6;cursor:pointer;font-weight:600;" onclick="sortTable(1)">
+            Department <i class="fas fa-sort ms-1"></i>
+          </th>
+          <th style="padding:15px;border-bottom:2px solid #dee2e6;cursor:pointer;font-weight:600;" onclick="sortTable(2)">
+            Job Title <i class="fas fa-sort ms-1"></i>
+          </th>
+          <th style="padding:15px;border-bottom:2px solid #dee2e6;cursor:pointer;font-weight:600;" onclick="sortTable(3)">
+            Status <i class="fas fa-sort ms-1"></i>
+          </th>
+          <th style="padding:15px;border-bottom:2px solid #dee2e6;cursor:pointer;font-weight:600;" onclick="sortTable(4)">
+            Date Joined <i class="fas fa-sort ms-1"></i>
+          </th>
+          <th style="padding:15px;border-bottom:2px solid #dee2e6;font-weight:600;">Actions</th>
+        </tr>
+      </thead>
+      <tbody id="employeeTableBody">
+        <!-- Employee rows will be populated by JavaScript -->
+      </tbody>
+    </table>
+  </div>
+
+  <!-- EMPLOYEE CARDS (MOBILE VIEW) -->
+  <div class="mobile-cards d-md-none" id="employeeCards">
+    <!-- Employee cards will be populated by JavaScript -->
+  </div>
+
+  <!-- TABLE FOOTER WITH PAGINATION -->
+  <div style="padding:20px;border-top:1px solid #e5e7eb;display:flex;justify-content:space-between;align-items:center;">
+    <div style="font-size:14px;color:#6c757d;">
+      Showing <span id="showingFrom">1</span> to <span id="showingTo">10</span> of <span id="totalEmployees">15</span> employees
+    </div>
+    <nav>
+      <ul class="pagination pagination-sm mb-0" id="pagination">
+        <!-- Pagination will be populated by JavaScript -->
+      </ul>
+    </nav>
+  </div>
+
+</div>
+
+
+
+
+<!-- ============================
+     POPUP FORM INSIDE MAIN CONTENT
+     ============================ -->
+<div id="empFormBox"
+     style="display:none; position:fixed; left:50%; top:20%; transform:translateX(-50%);
+            width:90%; max-width:800px; background:#fff; border:1px solid #d1d5db; border-radius:12px;
+            padding:25px; box-shadow:0 5px 20px rgba(0,0,0,0.15); z-index:1000;">
+
+  <!-- HEADER -->
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;
+              border-bottom:1px solid #e6e6e6; padding-bottom:10px;">
+    <h4 style="margin:0; color:#0b7368; font-weight:700;">Add New Employee</h4>
+
+    <!-- CLOSE BUTTON -->
+    <button onclick="document.getElementById('empFormBox').style.display='none';"
+      style="border:none;background:none;font-size:22px;font-weight:700;color:#333;">
+      &times;
+    </button>
+  </div>
+
+  <!-- FORM -->
+  <form>
+
+    <!-- ROW 1 -->
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <label class="form-label fw-bold">Full Name</label>
+        <input type="text" class="form-control" placeholder="Enter employee full name">
+      </div>
+
+      <div class="col-md-4">
+        <label class="form-label fw-bold">Employee ID</label>
+        <input type="text" class="form-control" placeholder="EMP1234">
+      </div>
+
+      <div class="col-md-4">
+        <label class="form-label fw-bold">Email</label>
+        <input type="email" class="form-control" placeholder="email@example.com">
+      </div>
+    </div>
+
+    <!-- ROW 2 -->
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <label class="form-label fw-bold">Phone Number</label>
+        <input type="text" class="form-control" placeholder="+91 9876543210">
+      </div>
+
+      <div class="col-md-4">
+        <label class="form-label fw-bold">Date of Joining</label>
+        <input type="date" class="form-control">
+      </div>
+
+      <div class="col-md-4">
+        <label class="form-label fw-bold">Job Role</label>
+        <input type="text" class="form-control" placeholder="Software Engineer">
+      </div>
+    </div>
+
+    <!-- ROW 3 -->
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <label class="form-label fw-bold">Department</label>
+        <select class="form-select">
+          <option>Select Department</option>
+          <option>IT</option>
+          <option>HR</option>
+          <option>Finance</option>
+          <option>Admin</option>
+          <option>Operations</option>
+        </select>
+      </div>
+
+      <div class="col-md-4">
+        <label class="form-label fw-bold">IT Sub-Department</label>
+        <select class="form-select">
+          <option>Select IT Team</option>
+          <option>Frontend Developer</option>
+          <option>Backend Developer</option>
+          <option>Full Stack Developer</option>
+          <option>DevOps</option>
+          <option>Cloud Engineer</option>
+          <option>Network & Cyber Security</option>
+          <option>UI / UX Designer</option>
+          <option>QA / Testing</option>
+          <option>AI / ML</option>
+          <option>Data Science</option>
+          <option>IT Support</option>
+        </select>
+      </div>
+
+      <div class="col-md-4">
+        <label class="form-label fw-bold">Employment Type</label>
+        <select class="form-select">
+          <option>Full Time</option>
+          <option>Part Time</option>
+          <option>Internship</option>
+          <option>Contract</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- ROW 4 -->
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <label class="form-label fw-bold">Address</label>
+        <input type="text" class="form-control" placeholder="Street & House No.">
+      </div>
+
+      <div class="col-md-4">
+        <label class="form-label fw-bold">City</label>
+        <input type="text" class="form-control" placeholder="Mumbai / Pune">
+      </div>
+
+      <div class="col-md-4">
+        <label class="form-label fw-bold">Country</label>
+        <input type="text" class="form-control" placeholder="India">
+      </div>
+    </div>
+
+    <!-- SUBMIT -->
+    <div style="text-align:right;margin-top:10px;">
+      <button class="btn btn-secondary"
+        onclick="document.getElementById('empFormBox').style.display='none'; return false;">
+        Cancel
+      </button>
+
+      <button class="btn"
+        style="background:#0b7368;color:#fff;font-weight:700;">
+        Save Employee
+      </button>
+    </div>
+
+  </form>
+
+</div>
+
+
+
+
+
+
+
+  
+</main>
+
+<div id="overlay" class="overlay"></div>
+
+<!-- Language Manager -->
+<script src="/assets/js/language-manager.js"></script>
+
+<script src="/assets/js/main.js"></script>
+<script src="/assets/js/hr-employee.js"></script>
+
+
+
+
+
+</body>
+</html>
